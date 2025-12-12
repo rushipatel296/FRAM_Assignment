@@ -6,12 +6,12 @@
 This project replicates the role of a portfolio risk analyst at a trading or investment firm. We construct and analyze a multi-asset portfolio consisting of equities, an index, FX rate, and a commodity, and then apply advanced risk modeling and hedging techniques.
 
 The workflow covers:
-	*	Portfolio construction and return analysis
-	*	Volatility modeling and forecasting (Historical, GARCH-type models)
-	*	Value-at-Risk (VaR) estimation across different methods
-	*	Backtesting and model validation
-	*	Option pricing and Greeks analysis
-	*	Hedging strategies (Delta/Vega/Diversification hedge)
+*	Portfolio construction and return analysis
+*	Volatility modeling and forecasting (Historical, GARCH-type models)
+*	Value-at-Risk (VaR) estimation across different methods
+*	Backtesting and model validation
+*	Option pricing and Greeks analysis
+*	Hedging strategies (Delta/Vega/Diversification hedge)
 
 The final deliverable demonstrates how a risk manager can measure, forecast, and mitigate risks in real-world markets.
 
