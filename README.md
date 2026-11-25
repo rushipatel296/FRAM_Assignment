@@ -1,125 +1,28 @@
-
 # Multi-Asset Portfolio Risk Analysis
 
-## Overview
+A portfolio-risk case study covering Indian equities, NIFTY 50, USD/INR, and silver. The analysis compares volatility models, three Value-at-Risk methods, backtests their assumptions, and explores option Greeks and delta-neutral hedging.
 
-This project replicates the role of a portfolio risk analyst at a trading or investment firm. We construct and analyze a multi-asset portfolio consisting of equities, an index, FX rate, and a commodity, and then apply advanced risk modeling and hedging techniques.
+## What we found
 
-The workflow covers:
-*	Portfolio construction and return analysis
-*	Volatility modeling and forecasting (Historical, GARCH-type models)
-*	Value-at-Risk (VaR) estimation across different methods
-*	Backtesting and model validation
-*	Option pricing and Greeks analysis
-*	Hedging strategies (Delta/Vega/Diversification hedge)
+- EGARCH produced the strongest volatility-model fit by AIC.
+- Historical and Student-t Monte Carlo VaR were more conservative than the parametric approach.
+- The 99% VaR backtest found independent exceptions, but its coverage still needed recalibration.
 
-The final deliverable demonstrates how a risk manager can measure, forecast, and mitigate risks in real-world markets.
+## Run locally
 
-
-## Tools & Libraries
-*	Data Sources: Yahoo Finance, Investing.com, RBI Database
-*	Languages & Libraries:
-	*	Python (Pandas, NumPy, Matplotlib, Seaborn)
-	*	Statsmodels (ARIMA, time series analysis)
-	*	Arch/GARCH package (Volatility modeling)
-	*	Scipy, NumPy Random (Monte Carlo simulation)
-
-
-
-## Methodology
-
-1. Asset Selection & Data Preprocessing
-	*	Large-cap stock (e.g., INFY, RELIANCE, AAPL)
-	*	Market index (e.g., NIFTY 50, S&P 500)
-	*	FX Rate (e.g., USD/INR, EUR/USD)
-	*	Small-cap stock
-	*	Commodity (e.g., Gold, Crude Oil)
-
-    Steps:
-      *	Data aligned on common dates, missing values handled via forward-fill.
-      *	Log returns computed.
-      *	Initial summary statistics (mean, std, skewness, kurtosis).
-    
-
-
-2. Volatility Modeling & Forecasting
-	*	Historical Volatility: Rolling-window estimation.
-	*	GARCH models:
-	*	GARCH(1,1)
-	*	EGARCH / GJR-GARCH (asymmetric models)
-	*	Model selection via AIC/BIC comparison.
-	*	30-day volatility forecast for each asset and portfolio.
-
-
-3. Value at Risk (VaR)
-  Computed at 95% and 99% confidence levels using:
-    *	Variance-Covariance Method
-    *	Historical Simulation
-    *	Monte Carlo Simulation
-
-
-4. Backtesting & Model Validation
-	*	1-day 99% VaR validated using Kupiec Test and Christoffersen Test.
-	*	GARCH residuals tested with Ljung-Box for autocorrelation.
-	*	Discussion of exceptions and recalibration needs.
-
-
-
-5. Option Pricing & Greeks
-	*	Simulated Geometric Brownian Motion (GBM) paths.
-	*	European call/put option pricing.
-	*	Greeks estimated (Δ, Γ, Vega, Θ) and interpreted.
-	*	Sensitivity of Greeks across strikes and maturities.
-
-
-6. Hedging Strategies
-	*	Implemented Delta-Neutral Hedging (with dynamic rebalancing).
-	*	Alternative strategies (Vega-neutral & diversification hedge) also discussed.
-	*	Interpretation of hedge effectiveness.
-
-
-
-## Key Deliverables
-
-*	Portfolio return distributions & volatility plots
-*	30-day volatility forecasts (GARCH vs Historical)
-*	VaR comparison across methods
-*	Backtest results with exceptions and p-values
-*	Option Greeks analysis & hedging strategy outcomes
-
-
-
-## Executive Summary (Business View)
-
-*	Portfolio Profile: 5-asset portfolio spanning equities, FX, and commodities.
-*	Risk Findings: Portfolio exhibits volatility clustering; asymmetric models outperform symmetric ones; Monte Carlo VaR provides more conservative estimates.
-*	Hedging Recommendation: A delta-neutral hedge combined with diversification provides robust downside protection.
-*	Limitations: Limited to 5-year daily data, model assumptions (GBM, normality) may not fully capture extreme market events.
-
-
-## How to Run
-	
-1.	Clone the repo
 ```bash
-git clone <repo-link>
-cd <repo>
-```
-
-2. Install dependencies
-
-```python
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
+streamlit run app.py
 ```
 
-3. Open notebook
-```
-jupyter notebook notebooks/Portfolio_Risk_Analysis.ipynb
-```
+The full analysis and saved outputs are in [`FRAM_Assignment.ipynb`](FRAM_Assignment.ipynb). The public explorer uses those recorded 2019–2024 results, so it does not require a market-data API.
 
+## Stack
 
-## Contributors
+Python, pandas, NumPy, SciPy, statsmodels, ARIMA, GARCH-family models, Monte Carlo simulation, and Streamlit.
 
-*	Rushi Patel
-*	Khush Bhuta
-*	Daksh Jain
+Built by Rushi Patel, Khush Bhuta, and Daksh Jain.
 
+> Educational case study only—not current market data or investment advice.
